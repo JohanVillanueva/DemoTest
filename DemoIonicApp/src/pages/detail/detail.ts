@@ -25,8 +25,9 @@ export class DetailPage {
 
   data:Item;
   isFormDisabled:boolean;
+  imageUrl:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder:FormBuilder,private photoLibrary:PhotoLibrary,
-    private itemProvider:ItemProvider,private loadingCtrl:LoadingController, private alertCtrl:AlertController) {
+    private itemProvider:ItemProvider,private loadingCtrl:LoadingController, private alertCtrl:AlertController,private camera:Camera) {
 
     this.data = this.navParams.get('data');
     this.isFormDisabled = this.navParams.get('disableForm');
@@ -48,7 +49,7 @@ export class DetailPage {
 
   saveData(){
     let {title,description} = this.form.value;
-    let itemToSave:Item = new Item(title,description,null)
+    let itemToSave:Item = new Item(title,description,this.imageUrl)
     console.log('itemToSave', itemToSave);
 
     this.presentLoading('Saving...').then(
@@ -68,32 +69,25 @@ export class DetailPage {
   }
 
   pickPhoto(){
-    this.photoLibrary.requestAuthorization().then(() => {
-      this.photoLibrary.getLibrary().subscribe({
-        next: library => {
-          library.forEach(function(libraryItem) {
-            console.log(libraryItem.id);          // ID of the photo
-            console.log(libraryItem.photoURL);    // Cross-platform access to photo
-            console.log(libraryItem.thumbnailURL);// Cross-platform access to thumbnail
-            console.log(libraryItem.fileName);
-            console.log(libraryItem.width);
-            console.log(libraryItem.height);
-            console.log(libraryItem.creationDate);
-            console.log(libraryItem.latitude);
-            console.log(libraryItem.longitude);
-            console.log(libraryItem.albumIds);    // array of ids of appropriate AlbumItem, only of includeAlbumsData was used
-          });
-        },
-        error: err => { console.log('could not get photos'); },
-        complete: () => { console.log('done getting photos'); }
-      });
-    })
-    .catch(err => this.presentAlert('Message','Permission Denied'));
+    let cameraOptions = {
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: Camera.DestinationType.FILE_URI,      
+      quality: 100,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      encodingType: Camera.EncodingType.JPEG,      
+      correctOrientation: true
+    }
+  
+    this..getPicture(cameraOptions)
+      .then(file_uri => alert(file_uri), 
+      err => console.log(err));  
   }
 
   updateData(id){
     let {title,description} = this.form.value;
-    let itemToSave:Item = new Item(title,description,null)
+    
+    let itemToSave:Item = new Item(title,description,this.imageUrl);
 
     this.presentLoading('Saving...').then(
       ()=>{

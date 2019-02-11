@@ -12,7 +12,7 @@
         </button>
       </ion-buttons>
     </ion-card-header>
-    <img (click)="openDetail()" [src]="data && data.image?data.image: '../../assets/imgs/logo.png'" class="card-image" alt="Item Image">
+    <img (click)="openDetail()" [src]="data && data.image?data.image: 'assets/imgs/logo.png'" class="card-image" alt="Item Image">
     <ion-card-content class="card-content regular-font-size" (click)="openDetail()">
         {{data.description}}
     </ion-card-content>
