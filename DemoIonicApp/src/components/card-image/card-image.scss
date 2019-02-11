@@ -1,0 +1,31 @@
+card-image {
+    .card-container{
+        .card-header{
+            display: flex;
+            padding: 5px 5px 5px 16px !important;
+            justify-content: space-between;
+            align-items: center;
+            background-color: color($colors,primary);
+            h2{
+                color:color($colors,light) !important;
+                margin:0;
+                padding: 0;
+            }
+            ion-buttons{
+                button{
+                    border-radius: 50%;
+                    ion-icon{
+                        color : color($colors, light);
+                    }
+                }
+            }
+        }
+        .card-image{
+            height: 10rem; 
+        }
+        .card-content{
+            background-color: color($colors,primary);
+            color: color($colors, light);
+        }
+    }
+}

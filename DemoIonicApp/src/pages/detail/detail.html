@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary"> 
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <form [formGroup]="form" >
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" formControlName="title" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-input type="text" formControlName="description" ></ion-input>
+    </ion-item>
+    <div class="input-file-container">
+      <ion-item margin-right>
+        <ion-label floating>Photo</ion-label>
+        <ion-input type="text" disabled="true"></ion-input>
+      </ion-item>
+      <input type="file" name="input-file" id="input-file">
+      <button ion-button type="button" color="light" *ngIf="!isFormDisabled" (click)="pickPhoto()">EXAMINAR</button>
+    </div>
+  </form>
+  <div class="image-container">
+    <img [src]="data && data.image?data.image:'../../assets/imgs/logo.png'" alt="">
+  </div>
+</ion-content>
+<ion-footer no-border padding text-right>
+  <span *ngIf="!isFormDisabled" >
+    <button  ion-button color="light"  [disabled]="false" (click)="cancelbuttonClick()">Cancel</button>
+    <button *ngIf="!data" ion-button  [disabled]="!form.valid" (click)="saveData()">Save</button>
+    <button *ngIf="data" ion-button  [disabled]="!form.valid" (click)="updateData(data.id)">Update</button>
+  </span>
+</ion-footer>

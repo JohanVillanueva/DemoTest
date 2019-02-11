@@ -1,0 +1,20 @@
+<ion-card class="card-container">
+    <ion-card-header class="card-header">
+      <h2 class="regular-font-size bold" (click)="openDetail()">
+        {{data.title}}
+      </h2>
+      <ion-buttons right>
+        <button ion-button icon-only clear (click)="onFav()">
+          <ion-icon [name]="data.isFav?'heart':'heart-outline'"  color="light"></ion-icon>
+        </button>
+        <button ion-button icon-only clear (click)="openPopover($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-card-header>
+    <img (click)="openDetail()" [src]="data && data.image?data.image: '../../assets/imgs/logo.png'" class="card-image" alt="Item Image">
+    <ion-card-content class="card-content regular-font-size" (click)="openDetail()">
+        {{data.description}}
+    </ion-card-content>
+</ion-card>
+

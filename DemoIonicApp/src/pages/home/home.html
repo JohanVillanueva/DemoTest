@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary"> 
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Demo App</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="padding">
+    <card-image *ngFor="let item of itemList" [data]="item" (onFavEvent)="favEvent($event)" 
+      (onDeleteEvent)="preDeleteEvent($event)" (onEditEvent)="editEvent($event)"
+       (onDetailEvent)="openDetail($event,true)"></card-image>
+
+    <ion-fab bottom right >
+        <button ion-fab color="secondary" (click)="openDetail(null,false)" mini>
+          <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

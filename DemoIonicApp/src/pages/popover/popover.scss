@@ -1,0 +1,9 @@
+page-popover {
+    ion-content{
+        button{
+            .item-inner{
+                border-bottom: 0 !important;
+            }
+        }
+    }
+}

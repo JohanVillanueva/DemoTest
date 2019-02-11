@@ -1,0 +1,6 @@
+<ion-content>
+    <button ion-item clear *ngFor="let option of options " (click)="closePopover(option.value)" no-border>
+      <ion-icon [name]="option.icon"  item-start color="primary"></ion-icon>
+        {{option.name}}
+    </button>
+</ion-content>

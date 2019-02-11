@@ -1,0 +1,27 @@
+page-detail {
+    ion-content{
+        .scroll-content{
+            padding: 0 16px !important;
+        }
+        form{
+            ion-item{
+                padding-left: 0px !important;
+            }
+            .input-file-container{
+                display: flex;
+                align-items: flex-end;
+                #input-file{
+                    display: none;
+                }
+            }
+        }
+        .image-container{
+            text-align: center;
+            margin-top:25px;
+            img{
+                max-height: 220px;
+                min-width: 100%;
+            }
+        }
+    }
+}
