@@ -1,0 +1,227 @@
+{
+  "paths": {
+    "/areaPrivada/clientes/perfil/datosPersonales": {
+      "x-swagger-router-controller": "AUT_ProfileController",
+      "get": {
+        "tags": [
+          "Autoservicio - Clientes - Perfil"
+        ],
+        "summary": "Obtener datos personales del cliente.",
+        "description": "Obtener los datos personales de un determinado cliente, incluyendo la informacion del lugar de trabajo. Alta Disponibilidad (Si), Respuesta MAX (1 Seg), Volumen (100)",
+        "operationId": "informacionPersonal",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipoDocumento",
+            "description": "Tipo de documento",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DNI",
+              "RUC",
+              "PEX",
+              "CEX",
+              "CIP"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "documento",
+            "description": "Numero del documento cliente",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/areaPrivada/clientes/perfil/direcciones": {
+      "x-swagger-router-controller": "AUT_ProfileController",
+      "get": {
+        "tags": [
+          "Autoservicio - Clientes - Perfil"
+        ],
+        "summary": "Obtener las direcciones del cliente.",
+        "description": "Obtener las direcciones de un determinado cliente, incluyendo las asociadas a las pólizas y de correspondencia. Alta Disponibilidad (Si), Respuesta MAX (1 Seg), Volumen (100)",
+        "operationId": "obtenerdireccionesPoliza",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipoDocumento",
+            "description": "Tipo de documento",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DNI",
+              "RUC",
+              "PEX",
+              "CEX",
+              "CIP"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "documento",
+            "description": "Numero del documento cliente",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tipoPoliza",
+            "description": "Tipo de póliza a filtar",
+            "type": "string",
+            "enum": [
+              "MD_AUTOS",
+              "MD_SALUD",
+              "MD_VIDA",
+              "MD_HOGAR",
+              "MD_DECESOS",
+              "MD_SCTR",
+              "MD_SOAT",
+              "MD_SOAT_ELECTRO",
+              "MD_EPS",
+              "MD_SOAT|MD_SOAT_ELECTRO",
+              "MD_SALUD|MD_EPS"
+            ],
+            "required": false
+          }
+        ]
+      }
+    },
+    "/areaPrivada/clientes/perfil/direccionCorrespondencia": {
+      "x-swagger-router-controller": "AUT_ProfileController",
+      "get": {
+        "tags": [
+          "Autoservicio - Clientes - Perfil"
+        ],
+        "summary": "Obtener las dirección de correspondencia del cliente.",
+        "description": "Obtener la dirección de correspondencia de un determinado cliente. Alta Disponibilidad (Si), Respuesta MAX (1 Seg), Volumen (100)",
+        "operationId": "obtenerDireccionCorrespondenciaPersonal",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipoDocumento",
+            "description": "Tipo de documento",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DNI",
+              "RUC",
+              "PEX",
+              "CEX",
+              "CIP"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "documento",
+            "description": "Numero del documento cliente",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Autoservicio - Clientes - Perfil"
+        ],
+        "summary": "Actualizar dirección de correspondencia de un cliente.",
+        "description": "Actualizar dirección de correspondencia de un cliente. Alta Disponibilidad (Si), Respuesta MAX (1 Seg), Volumen (100)",
+        "operationId": "actualizarDireccionCorrespondenciaPersonal",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipoDocumento",
+            "description": "Tipo de documento",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "DNI",
+              "RUC",
+              "PEX",
+              "CEX",
+              "CIP"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "documento",
+            "description": "Numero del documento cliente",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "json",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "identificadorDepartamento": {
+                  "type": "number",
+                  "description": "Identificador Departamento asociado a la dirección"
+                },
+                "identificadorProvincia": {
+                  "type": "number",
+                  "description": "Identificador Provincia asociada a la dirección"
+                },
+                "identificadorDistrito": {
+                  "type": "number",
+                  "description": "Identificador Distrito asociado a la dirección"
+                },
+                "direccion": {
+                  "type": "string",
+                  "description": "Dirección agregada por el cliente (nombre de calle, número, etc.)"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
